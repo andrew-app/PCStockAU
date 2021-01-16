@@ -115,46 +115,21 @@ class MySpider(scrapy.Spider):
         elif i == 4:
 
             ccom = response.xpath("//div[@class='prod_right']//text()").getall()
-            a = False  # boolean for cases when one with status 'call'
-            b = False
             for stock in ccom:
                 j = j + 1
-                if stores[0] in stock:
-                    if checktxt[1] in ccom[j]:
-                        print(
-                            f"{Fore.BLUE}@Centrecom{Fore.WHITE}(online){Fore.BLUE}::{Fore.GREEN}In Stock{Style.RESET_ALL}")
-                        inv["CCOM"] = "In Stock"
-                        a = True
 
-                    elif checktxt[3] in ccom[j]:
-                        print(
-                            f"{Fore.BLUE}@Centrecom{Fore.WHITE}(online){Fore.BLUE}::{Fore.YELLOW}Call{Style.RESET_ALL}")
-                        a = True
+                if checktxt[1] in stock:
+                    print(f"{Fore.BLUE}@Centrecom::{Fore.GREEN}In Stock{Style.RESET_ALL}")
+                    inv["CCOM"] = "In Stock"
+                    break
+                elif checktxt[3] in stock:
+                    print(f"{Fore.BLUE}@Centrecom::{Fore.YELLOW}Call{Style.RESET_ALL}")
+                    break
 
 
-                elif stores[1] in stock:
-                    if checktxt[1] in ccom[j]:
-                        print(f"{Fore.BLUE}@Centrecom{Fore.WHITE}(Bundoora){Fore.BLUE}::{Fore.GREEN}In Stock{Style.RESET_ALL}")
-                        inv["CCOM"] = "In Stock"
-                        b = True
-
-                    elif checktxt[3] in ccom[j]:
-                        print(f"{Fore.BLUE}@Centrecom{Fore.WHITE}(Bundoora){Fore.BLUE}::{Fore.YELLOW}Call{Style.RESET_ALL}")
-
-                        b = True
-
-                    if j == len(ccom):
+                elif j == len(ccom):
                         break
-            if a == False and b == False:  # Both Out of Stock
-                    print(f"{Fore.BLUE}@Centrecom{Fore.WHITE}(online){Fore.BLUE}::{Fore.RED}Out of Stock{Style.RESET_ALL}")
 
-                    print(f"{Fore.BLUE}@Centrecom{Fore.WHITE}(Bundoora){Fore.BLUE}::{Fore.RED}Out of Stock{Style.RESET_ALL}")
-
-            elif a == True and b == False:  # Online in stock
-                print(f"{Fore.BLUE}@Centrecom{Fore.WHITE}(Bundoora){Fore.BLUE}::{Fore.RED}Out of Stock{Style.RESET_ALL}")
-
-            elif a == False and b == True:  # Bundoora in stock
-                print(f"{Fore.BLUE}@Centrecom{Fore.WHITE}(online){Fore.BLUE}::{Fore.RED}Out of Stock{Style.RESET_ALL}")
 
 
 def CheckStock():

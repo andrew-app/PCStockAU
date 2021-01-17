@@ -44,7 +44,7 @@ class MySpider(scrapy.Spider):
         global i, checktxt, stores, inv
         store = False
         j = 0
-        MySpider.test = 5
+
         if i == 0:
 
             pccg = response.xpath("//div[@class='price-box']//text()").getall()
@@ -173,6 +173,6 @@ if __name__ == '__main__':
                 body = pickle.load(fi)
             if checktxt[1] in inv.values():
                 print("email sent")
-                #sendemail("Product Status", body)
+                sendemail("Product Status", body)
 
 

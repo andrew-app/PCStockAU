@@ -32,7 +32,7 @@ body = []
 
 
 class MySpider(scrapy.Spider):
-    name = "PCPAU"
+    name = "PCStockAU"
     start_urls = ["https://www.pccasegear.com/products/52254/amd-ryzen-5-5600x-with-wraith-stealth"]
     custom_settings = {
         'LOG_ENABLED': 'False',

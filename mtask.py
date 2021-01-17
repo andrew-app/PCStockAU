@@ -1,11 +1,13 @@
 import scrapy
 import time
-from colorama import Fore, Style
+from colorama import Fore, Style, init
 from scrapy.crawler import CrawlerProcess
 from multiprocessing import Process
 from em_service import sendemail
 import datetime
 import pickle
+
+#init(convert=True) #if no coloured font with output working use this line
 
 urls = ["https://www.pccasegear.com/products/52254/amd-ryzen-5-5600x-with-wraith-stealth",
         "https://www.ple.com.au/Products/643561/AMD-Ryzen-5-5600X-37Ghz-6-Core-12-Thread-AM4---With-Wraith-Stealth-Cooler",
@@ -27,7 +29,7 @@ inv = {
 
 body = []
 
-#test
+
 
 class MySpider(scrapy.Spider):
     name = "PCPAU"

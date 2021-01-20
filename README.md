@@ -24,3 +24,11 @@ NOTE: Recommended to be used in python virtual environment.
 ### Notes
 
 Tested on raspberry pi 3 and manjaro linux kde plasma 20.2.1
+
+### TO DO:
+
+-Code readability and scalability. <br />
+-py GUI for desktop app. <br />
+-Workaround for other websites with bot protection.<br />
+-Auto add to cart feature.
+

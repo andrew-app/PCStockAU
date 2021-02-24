@@ -31,4 +31,4 @@ Tested on raspberry pi 3 and manjaro linux kde plasma 20.2.1
 -py GUI for desktop app. <br />
 -Workaround for websites with bot protection.<br />
 -Auto add to cart feature.
-
+-Implement to discord bot

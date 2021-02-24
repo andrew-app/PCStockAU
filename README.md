@@ -30,5 +30,5 @@ Tested on raspberry pi 3 and manjaro linux kde plasma 20.2.1
 -Code readability and scalability. <br />
 -py GUI for desktop app. <br />
 -Workaround for websites with bot protection.<br />
--Auto add to cart feature.
+-Auto add to cart feature.  <br />
 -Implement to discord bot

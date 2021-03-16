@@ -10,7 +10,7 @@ g-mail account with less secure app access enabled
 ## Usage/Installation
 NOTE: Recommended to be used in python virtual environment.
 1. Download/Clone files from master branch.
-2. In terminal pip install requirements.txt
+2. In terminal "pip install -r requirements.txt"
 3. Edit the script em_service.py with your sender and receiver email
 4. run python script mtask.py (on rpi: python3.x mtask.py)
 

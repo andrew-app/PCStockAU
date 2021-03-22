@@ -2,3 +2,4 @@ scrapy==2.4.1
 colorama
 yagmail 
 keyring
+pickle

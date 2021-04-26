@@ -74,7 +74,7 @@ class MySpider(scrapy.Spider):
 
                     print(f"{Fore.BLUE}@PLE::{Fore.GREEN}In Stock{Style.RESET_ALL}")
 
-                    MySpider.inv["PLE"] = "In Stock"
+                    inv["PLE"] = "In Stock"
                     store = True
 
 

@@ -7,7 +7,8 @@ from em_service import sendemail
 import datetime
 import pickle
 
-#init(convert=True) #if no coloured font with output working uncomment this line
+#init(convert=True) 
+#if no coloured font with output working uncomment above line
 
 urls = ["https://www.pccasegear.com/products/53255/msi-geforce-rtx-3080-ventus-3x-10gb",
         "https://www.ple.com.au/Products/643561/AMD-Ryzen-5-5600X-37Ghz-6-Core-12-Thread-AM4---With-Wraith-Stealth-Cooler",

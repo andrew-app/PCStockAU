@@ -6,8 +6,8 @@ from multiprocessing import Process
 from em_service import sendemail
 import datetime
 import pickle
-import re
-#init(convert=True) #if no coloured font with output working use this line
+
+#init(convert=True) #if no coloured font with output working uncomment this line
 
 urls = ["https://www.pccasegear.com/products/53255/msi-geforce-rtx-3080-ventus-3x-10gb",
         "https://www.ple.com.au/Products/643561/AMD-Ryzen-5-5600X-37Ghz-6-Core-12-Thread-AM4---With-Wraith-Stealth-Cooler",

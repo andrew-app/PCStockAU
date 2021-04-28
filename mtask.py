@@ -11,7 +11,7 @@ import pickle
 
 urls = ["https://www.pccasegear.com/products/52254/amd-ryzen-5-5600x-with-wraith-stealth",
         "https://www.ple.com.au/Products/643561/AMD-Ryzen-5-5600X-37Ghz-6-Core-12-Thread-AM4---With-Wraith-Stealth-Cooler",
-        "https://www.msy.com.au/amd-ryzen-5-5600x-100-100000065box-up-to-46ghz-base-clock-37ghzam46-cores12-threads32mb65w-unlocked-boxed-cpu-without-cpu-cooler",
+        "https://old.msy.com.au/amd-ryzen-5-5600x-100-100000065box-up-to-46ghz-base-clock-37ghzam46-cores12-threads32mb65w-unlocked-boxed-cpu-without-cpu-cooler",
         "https://www.umart.com.au/AMD-Ryzen-5-5600X-6-Core-AM4-4-6GHz-CPU-Processor_57284G.html",
         "https://www.centrecom.com.au/amd-ryzen-5-5600x-460ghz-6-cores-12-threads-am4-desktop-processor"
         ]
@@ -42,6 +42,7 @@ class MySpider(scrapy.Spider):
     def parse(self, response):
 
         global i, checktxt, stores, inv
+
         store = False
         j = 0
 
@@ -55,12 +56,12 @@ class MySpider(scrapy.Spider):
                     print(f"{Fore.BLUE}@PCCG::{Fore.GREEN}In Stock{Style.RESET_ALL}")
                     inv["PCCG"] = "In Stock"
                     store = True
-                elif j == len(
-                        pccg):  # 2nd last element in list will be ignored due to array indexing from 1 instead of 0
+                elif j == len(pccg):  # 2nd last element in list will be ignored due to array indexing from 1 instead of 0
                     if store is False:
                         print(f"{Fore.BLUE}@PCCG::{Fore.RED}Out of Stock{Style.RESET_ALL}")
-                    i = i + 1
-                    yield scrapy.Request(urls[1], callback=self.parse)
+
+            i = i + 1
+            yield scrapy.Request(urls[1], callback=self.parse)
 
 
         elif i == 1:
@@ -70,7 +71,7 @@ class MySpider(scrapy.Spider):
             for stock in ple:
                 j = j + 1
 
-                if checktxt[0] in stock:
+                if checktxt[0] in stock and store is False:
 
                     print(f"{Fore.BLUE}@PLE::{Fore.GREEN}In Stock{Style.RESET_ALL}")
 
@@ -82,8 +83,9 @@ class MySpider(scrapy.Spider):
                 elif j == len(ple):
                     if store is False:
                         print(f"{Fore.BLUE}@PLE::{Fore.RED}Out of Stock{Style.RESET_ALL}")
-                    i = i + 1
-                    yield scrapy.Request(urls[2], callback=self.parse)
+
+            i = i + 1
+            yield scrapy.Request(urls[2], callback=self.parse)
 
 
         elif i == 2:
@@ -111,8 +113,8 @@ class MySpider(scrapy.Spider):
                 elif j == len(umart):
 
                     print(f"{Fore.BLUE}@Umart::{Fore.RED}Out of Stock{Style.RESET_ALL}")
-                    i = i + 1
-                    yield scrapy.Request(urls[4], callback=self.parse)
+            i = i + 1
+            yield scrapy.Request(urls[4], callback=self.parse)
 
         elif i == 4:
 
@@ -130,7 +132,8 @@ class MySpider(scrapy.Spider):
 
 
                 elif j == len(ccom):
-                        break
+                    print(f"{Fore.BLUE}@CCOM::{Fore.RED}Out of Stock{Style.RESET_ALL}")
+
 
 
 

@@ -31,5 +31,5 @@ Tested on raspberry pi 3 and manjaro linux kde plasma 20.2.1
 -py GUI for desktop app. <br />
 -Workaround for websites with bot protection.<br />
 -Auto add to cart feature.  <br />
--Implement to discord bot.
+-Implement to discord bot. <br />
 -Containerize each store using docker.

@@ -1,5 +1,5 @@
 # PCStockAU
-Keep track of store inventory from Australian tech retailers and send email alerts when product is in stock. Currently configured to track stock of AMD Ryzen 5600X. Ideal for use on raspberry pi.
+Keep track of store inventory from Australian tech retailers and send email alerts when a product is in stock. Ideal for use on raspberry pi.
 
 ## Requirements
 Python 3.7+ <br />

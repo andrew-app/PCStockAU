@@ -10,11 +10,11 @@ import pickle
 #init(convert=True) 
 #if no coloured font with output working uncomment above line
 
-urls = ["https://www.pccasegear.com/products/53255/msi-geforce-rtx-3080-ventus-3x-10gb",
+urls = ["https://www.pccasegear.com/products/53564/powercolor-radeon-rx-6800-xt-liquid-devil-16gb-rdna-2",
         "https://www.ple.com.au/Products/643561/AMD-Ryzen-5-5600X-37Ghz-6-Core-12-Thread-AM4---With-Wraith-Stealth-Cooler",
-        "https://old.msy.com.au/amd-ryzen-5-5600x-100-100000065box-up-to-46ghz-base-clock-37ghzam46-cores12-threads32mb65w-unlocked-boxed-cpu-without-cpu-cooler",
-        "https://www.umart.com.au/AMD-Ryzen-5-5600X-6-Core-AM4-4-6GHz-CPU-Processor_57284G.html",
-        "https://www.centrecom.com.au/amd-ryzen-5-5600x-460ghz-6-cores-12-threads-am4-desktop-processor"
+        "https://www.msy.com.au/online/graphic-cards/3931-asus-radeon-tuf-gaming-oc-rx-6800-xt-16gb-tuf-rx6800xt-o16g-gaming-.html",
+        "https://www.umart.com.au/Sapphire-Radeon-RX-6800-XT-Pulse-OC-16G-Graphics-Card_59424G.html",
+        "https://www.centrecom.com.au/sapphire-pulse-amd-radeon-rx-6800-xt-16gb-graphics-card",
         ]
 i = 0
 
@@ -115,35 +115,39 @@ class MySpider(scrapy.Spider):
 
         elif i == 3: #Umart Instance
             umart = response.xpath("//div[@class='col-xs-12 col-sm-6 col-md-12']//div[@class='content']//text()").getall()
+            title = response.xpath("/html/body/div[6]/div[1]/div/div/div/div[2]/h1//text()").getall()
             for stock in umart:
                 j = j + 1
 
                 if checktxt[1] in stock:
-                    print(f"{Fore.BLUE}@Umart::{Fore.GREEN}In Stock{Style.RESET_ALL}")
+                    print(f"{Fore.BLUE}{title[0]} @Umart::{Fore.GREEN}In Stock{Style.RESET_ALL}")
                     break
 
                 elif j == len(umart):
 
-                    print(f"{Fore.BLUE}@Umart::{Fore.RED}Out of Stock{Style.RESET_ALL}")
+                    print(f"{Fore.BLUE}{title[0]} @Umart::{Fore.RED}Out of Stock{Style.RESET_ALL}")
             i = i + 1
             yield scrapy.Request(urls[4], callback=self.parse)
 
         elif i == 4: #CCOM Instance
 
             ccom = response.xpath("//div[@class='prod_right']//text()").getall()
+            title = response.xpath("//div[@class='prod_top']//text()").getall()
             for stock in ccom:
                 j = j + 1
 
                 if checktxt[1] in stock:
-                    print(f"{Fore.BLUE}@Centrecom::{Fore.GREEN}In Stock{Style.RESET_ALL}")
+                    print(f"{Fore.BLUE}{title[1]} @Centrecom::{Fore.GREEN}In Stock{Style.RESET_ALL}")
                     break
                 elif checktxt[3] in stock:
-                    print(f"{Fore.BLUE}@Centrecom::{Fore.YELLOW}Call{Style.RESET_ALL}")
+                    print(f"{Fore.BLUE}{title[1]} @Centrecom::{Fore.YELLOW}Call{Style.RESET_ALL}")
                     break
 
 
                 elif j == len(ccom):
                     print(f"{Fore.BLUE}@CCOM::{Fore.RED}Out of Stock{Style.RESET_ALL}")
+    
+
 
 
 

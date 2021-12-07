@@ -70,7 +70,7 @@ if __name__ == '__main__':
                 body = pickle.load(fi)
             if "In Stock" in inv.values():
                 print("email sent")
-                sendemail("Henrypham2293@gmail.com", "Nano Noe @LV In Stock!", body)
-                sendemail("andyapp106@gmail.com", "Nano Noe @LV In Stock!", body)
+                sendemail("", "Nano Noe @LV In Stock!", body)
+                sendemail("", "Nano Noe @LV In Stock!", body)
                 
 

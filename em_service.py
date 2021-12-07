@@ -3,8 +3,8 @@ import keyring
 
 
 def sendemail(email,subj, body):
-    keyring.set_password('yagmail', 'aus.pcparts1@gmail.com', 'ihatedav1-')
-    yag = yagmail.SMTP("aus.pcparts1@gmail.com")
+    keyring.set_password('yagmail', '', '')
+    yag = yagmail.SMTP("")
     yag.send(
     to=email,
     subject=subj,

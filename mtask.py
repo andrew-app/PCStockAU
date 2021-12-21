@@ -8,28 +8,35 @@ import os
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+import json
 
 options = FirefoxOptions()
-options.add_argument("--headless")
+options.set_preference("browser.cache.memory.enable", False)
+options.set_preference("browser.cache.offline.enable", False)
+options.set_preference("network.http.use-cache", False)
+options.headless = True
 driver = webdriver.Firefox(options=options)
-checktxt = f"\"inStock\":true"
 inv = {}
 body = []
 key = f"Nano Noé in Monogram canvas @ Louis Vuitton"
 url = "https://au.louisvuitton.com/eng-au/products/nano-noe-monogram-010573"
+curl = "view-source:https://api.louisvuitton.com/api/eng-au/catalog/availability/010573"
 
 def CheckStock():
-    driver.get("https://api.louisvuitton.com/api/eng-au/catalog/availability/010573")
-    status = driver.find_element_by_xpath("//div[@id='json']").text
-    
+    driver.delete_all_cookies()
+    driver.get(curl)
+    content = driver.page_source
+    content = driver.find_element(By.TAG_NAME,"pre").text
+    product = json.loads(content)
     inv[key] = {}
-    if checktxt in status:
-        inv[key] = "In Stock"
-        print(f"{Fore.BLUE} Nano Noé in Monogram canvas @Louis Vuitton::{Fore.GREEN}In Stock{Style.RESET_ALL}")
-
-    else:
-        inv[key] = "Out of Stock"
-        print(f"{Fore.BLUE} Nano Noé in Monogram canvas @Louis Vuitton::{Fore.RED}Out of Stock{Style.RESET_ALL}")
+    for item in product['skuAvailability']:
+        if item['inStock'] is True:
+            inv[key] = "In Stock"
+            print(f"{Fore.BLUE} Nano Noé in Monogram canvas @Louis Vuitton::{Fore.GREEN}In Stock{Style.RESET_ALL}")  
+        else:
+            inv[key] = "Out of Stock"
+            print(f"{Fore.BLUE} Nano Noé in Monogram canvas @Louis Vuitton::{Fore.RED}Out of Stock{Style.RESET_ALL}")
 
 def UpdateStock():
     CheckStock()
@@ -70,7 +77,7 @@ if __name__ == '__main__':
                 body = pickle.load(fi)
             if "In Stock" in inv.values():
                 print("email sent")
-                sendemail("", "Nano Noe @LV In Stock!", body)
-                sendemail("", "Nano Noe @LV In Stock!", body)
+                # sendemail("", "Nano Noe @LV In Stock!", body)
+                
                 
 
